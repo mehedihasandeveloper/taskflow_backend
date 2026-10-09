@@ -1,8 +1,11 @@
 import { Router } from "express";
 import { protect } from "../middleware/auth";
-import { getMe } from "../controllers/user.controller";
+import { changePassword, getMe, updateMe } from "../controllers/user.controller";
 
 const router = Router();
-router.get("/me", protect, getMe);
+router.use(protect);
+
+router.route("/me").get(getMe).patch(updateMe);
+router.patch("/me/password", changePassword);
 
 export default router;
