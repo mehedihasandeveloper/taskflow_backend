@@ -8,7 +8,7 @@ import taskRoutes from "./routes/task.routes";
 import dashboardRoutes from "./routes/dashboard.routes";
 import teamRoutes from "./routes/team.routes";
 import { errorHandler, notFound } from "./middleware/errorHandler";
-
+import aiRoutes from "./routes/ai.routes";
 const app = express();
 
 app.use(cors({ origin: env.clientUrl }));
@@ -21,6 +21,7 @@ app.use("/api/projects", projectRoutes);
 app.use("/api/dashboard", dashboardRoutes);
 app.use("/api/team", teamRoutes);
 app.use("/api", taskRoutes);
+app.use("/api", aiRoutes);
 
 app.use(notFound);
 app.use(errorHandler);

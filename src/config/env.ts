@@ -12,4 +12,5 @@ export const env = {
   jwtSecret: required("JWT_SECRET"),
   jwtExpiresIn: process.env.JWT_EXPIRES_IN || "7d",
   clientUrl: process.env.CLIENT_URL || "http://localhost:3000",
+  aiServiceUrl: process.env.AI_SERVICE_URL || "http://localhost:8001",
 };
