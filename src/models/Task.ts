@@ -8,6 +8,7 @@ export type TaskPriority = (typeof TASK_PRIORITIES)[number];
 export interface ITask {
   project: Types.ObjectId;
   owner: Types.ObjectId;
+  assignee: Types.ObjectId | null;
   title: string;
   description: string;
   status: TaskStatus;
@@ -21,6 +22,7 @@ const taskSchema = new Schema<ITask>(
   {
     project: { type: Schema.Types.ObjectId, ref: "Project", required: true, index: true },
     owner: { type: Schema.Types.ObjectId, ref: "User", required: true, index: true },
+    assignee: { type: Schema.Types.ObjectId, ref: "User", default: null, index: true },
     title: { type: String, required: true, trim: true, minlength: 2, maxlength: 120 },
     description: { type: String, trim: true, maxlength: 1000, default: "" },
     status: { type: String, enum: TASK_STATUSES, default: "Todo" },

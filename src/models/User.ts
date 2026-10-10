@@ -24,7 +24,18 @@ const userSchema = new Schema<IUser, UserModel, IUserMethods>(
     password: { type: String, required: true, select: false }, // hidden from queries by default
     avatar: { type: String },
   },
-  { timestamps: true }
+  {
+    timestamps: true,
+    toJSON: {
+      versionKey: false,
+      transform(_doc, ret: Record<string, unknown>) {
+        ret.id = ret._id;
+        delete ret._id;
+        delete ret.password;
+        return ret;
+      },
+    },
+  }
 );
 
 // Hash the password before saving (only when it changed)

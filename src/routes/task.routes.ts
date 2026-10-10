@@ -1,10 +1,12 @@
 import { Router } from "express";
 import { protect } from "../middleware/auth";
 import { validateObjectId } from "../middleware/validateId";
-import { createTask, deleteTask, getTasks, updateTask } from "../controllers/task.controller";
+import { createTask, deleteTask, getAllTasks, getTasks, updateTask } from "../controllers/task.controller";
 
-// Mounted at /api, so the full paths below are /api/projects/:projectId/tasks and /api/tasks/:id
+// Mounted at /api, so the full paths below are /api/tasks, /api/tasks/:id and /api/projects/:projectId/tasks
 const router = Router();
+
+router.get("/tasks", protect, getAllTasks);
 
 router
   .route("/projects/:projectId/tasks")

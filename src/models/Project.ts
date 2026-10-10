@@ -5,6 +5,7 @@ export type ProjectStatus = (typeof PROJECT_STATUSES)[number];
 
 export interface IProject {
   owner: Types.ObjectId;
+  members: Types.ObjectId[];
   name: string;
   description: string;
   status: ProjectStatus;
@@ -17,6 +18,7 @@ export interface IProject {
 const projectSchema = new Schema<IProject>(
   {
     owner: { type: Schema.Types.ObjectId, ref: "User", required: true, index: true },
+    members: { type: [{ type: Schema.Types.ObjectId, ref: "User" }], default: [], index: true },
     name: { type: String, required: true, trim: true, minlength: 2, maxlength: 100 },
     description: { type: String, trim: true, maxlength: 500, default: "" },
     status: { type: String, enum: PROJECT_STATUSES, default: "Planning" },

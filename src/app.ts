@@ -6,6 +6,7 @@ import userRoutes from "./routes/user.routes";
 import projectRoutes from "./routes/project.routes";
 import taskRoutes from "./routes/task.routes";
 import dashboardRoutes from "./routes/dashboard.routes";
+import teamRoutes from "./routes/team.routes";
 import { errorHandler, notFound } from "./middleware/errorHandler";
 
 const app = express();
@@ -18,6 +19,7 @@ app.use("/api/auth", authRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api/projects", projectRoutes);
 app.use("/api/dashboard", dashboardRoutes);
+app.use("/api/team", teamRoutes);
 app.use("/api", taskRoutes);
 
 app.use(notFound);

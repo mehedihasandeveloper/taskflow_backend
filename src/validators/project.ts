@@ -31,3 +31,7 @@ const datesInOrder = {
 
 export const createProjectSchema = base.refine(datesInOrder.check, datesInOrder.options);
 export const updateProjectSchema = base.partial().refine(datesInOrder.check, datesInOrder.options);
+
+export const addMemberSchema = z.object({
+  email: z.string().trim().min(1, "Email is required").email("Enter a valid email address").toLowerCase(),
+});
